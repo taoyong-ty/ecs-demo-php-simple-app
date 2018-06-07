@@ -7,7 +7,7 @@ phases:
       - IMAGE_URI="${REPOSITORY_URI}:${TAG}"
   build:
     commands:
-      - docker build --tag "$IMAGE_URI" --build-arg ecr_uri=$REPOSITORY_URI .
+      - docker build --tag "$IMAGE_URI" --build-arg ecr_uri="$REPOSITORY_URI" .
   post_build:
     commands:
       - docker push "$IMAGE_URI"
