@@ -8,7 +8,9 @@ RUN apt-get install -y git curl apache2 php5 libapache2-mod-php5 php5-mcrypt php
 # Install app
 RUN rm -rf /var/www/*
 ADD src /var/www
-RUN sed -i 's/ecrRepoUrl/'"$ecr_uri"'/g' /var/www/index.php
+
+#ecr_uri contains slash so use other delimiter
+RUN sed -i 's:ecrRepoUrl:'"$ecr_uri"':g' /var/www/index.php 
 
 # Configure apache
 RUN a2enmod rewrite
